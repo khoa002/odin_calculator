@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Echa-A-Sketch</title>
+    <style type="text/css">
+        html,
+        body {
+            background-color: grey;
+            padding: 10px;
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .parent {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .container {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-around;
+            padding: 15px;
+            margin: auto;
+            list-style: none;
+            width: 100%;
+            border: 1px solid #000;
+            background-color: white;
+        }
+
+        #mainDisplay {
+            width: 100%;
+            height: 1em;
+            padding: 5px;
+            margin: 0;
+            border: 1px solid #CCC;
+            text-align: right;
+            background-color: beige;
+        }
+
+        #numericButtons {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: space-around;
+            padding: 5px;
+            margin: 0 auto 0 0;
+            list-style: none;
+            width: 75%;
+            background-color: white;
+        }
+
+        #operationButtons {
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: space-around;
+            padding: 5px;
+            margin: 0 auto 0 0;
+            list-style: none;
+            width: 15%;
+            background-color: white;
+        }
+
+        .numberButtons {
+            width: 30%;
+            margin: 1px;
+        }
+        }
+
+        .operButtons {
+            width: 100%;
+            margin: 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div id="mainContainer" class="container">
+            <div id="mainDisplay">123456789</div>
+            <div id="numericButtons"></div>
+            <div id="operationButtons"></div>
+        </div>
+    </div>
+    <script type="text/javascript" async defer>
+        let mainDisplay = document.getElementById('mainDisplay');
+        let numericButtons = document.getElementById('numericButtons');
+        let operationButtons = document.getElementById('operationButtons');
+        let numberButtonsObj = [
+            {
+                display: 1,
+                type: 'number',
+                value: 1,
+            },
+            {
+                display: 2,
+                type: 'number',
+                value: 2,
+            },
+            {
+                display: 3,
+                type: 'number',
+                value: 3,
+            },
+            {
+                display: 4,
+                type: 'number',
+                value: 4,
+            },
+            {
+                display: 5,
+                type: 'number',
+                value: 5,
+            },
+            {
+                display: 6,
+                type: 'number',
+                value: 6,
+            },
+            {
+                display: 7,
+                type: 'number',
+                value: 7,
+            },
+            {
+                display: 8,
+                type: 'number',
+                value: 8,
+            },
+            {
+                display: 9,
+                type: 'number',
+                value: 9,
+            },
+            {
+                display: '.',
+                type: 'custom',
+                value: null,
+            },
+            {
+                display: 0,
+                type: 'number',
+                value: 0,
+            },
+            {
+                display: '=',
+                type: 'custom',
+                value: '=',
+            }
+        ];
+        let operationButtonsObj = [
+            {
+                display: '+',
+                type: 'operation',
+                value: '+',
+            }, {
+                display: '-',
+                type: 'operation',
+                value: '-',
+            }, {
+                display: '*',
+                type: 'operation',
+                value: '*',
+            }, {
+                display: '/',
+                type: 'operation',
+                value: '/',
+            },
+        ];
+        for (let item of numberButtonsObj) {
+            let button = document.createElement('button');
+            button.setAttribute('type', 'button');
+            button.setAttribute('class', 'numberButtons');
+            button.style.height = button.style.width;
+            let buttonText = document.createTextNode(item.display);
+            button.appendChild(buttonText);
+            numericButtons.appendChild(button);
+        }
+        for (let item of operationButtonsObj) {
+            let button = document.createElement('button');
+            button.setAttribute('type', 'button');
+            button.setAttribute('class', 'operButtons');
+            button.style.height = button.style.width;
+            let buttonText = document.createTextNode(item.display);
+            button.appendChild(buttonText);
+            operationButtons.appendChild(button);
+        }
+    </script>
+</body>
+
+</html>
