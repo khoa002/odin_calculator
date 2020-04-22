@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Echa-A-Sketch</title>
+    <title>Calculator</title>
     <style type="text/css">
         html,
         body {
@@ -138,7 +138,7 @@
             },
             {
                 display: '.',
-                type: 'custom',
+                type: 'point',
                 value: null,
             },
             {
@@ -148,7 +148,7 @@
             },
             {
                 display: '=',
-                type: 'custom',
+                type: 'equal',
                 value: '=',
             }
         ];
@@ -171,10 +171,15 @@
                 value: '/',
             },
         ];
+        let operandOne = false;
+        let operandTwo = false;
+        let operator = false;
+        let step = 'doOperandOne';
         for (let item of numberButtonsObj) {
             let button = document.createElement('button');
             button.setAttribute('type', 'button');
-            button.setAttribute('class', 'numberButtons');
+            button.setAttribute('class', 'buttonToClick numberButtons');
+            button.setAttribute('button-type', item.type);
             button.style.height = button.style.width;
             let buttonText = document.createTextNode(item.display);
             button.appendChild(buttonText);
@@ -183,11 +188,40 @@
         for (let item of operationButtonsObj) {
             let button = document.createElement('button');
             button.setAttribute('type', 'button');
-            button.setAttribute('class', 'operButtons');
+            button.setAttribute('class', 'buttonToClick operButtons');
+            button.setAttribute('button-type', item.type);
             button.style.height = button.style.width;
             let buttonText = document.createTextNode(item.display);
             button.appendChild(buttonText);
             operationButtons.appendChild(button);
+        }
+
+        let buttonToClick = document.getElementsByClassName('buttonToClick');
+        Array.from(buttonToClick).forEach(function (button) {
+            button.addEventListener('click', function () {
+                let buttonValue = this.innerHTML;
+                let buttonType = this.getAttribute('button-type');
+                window[step](buttonType, buttonValue);
+            });
+        });
+
+        function doOperandOne(type, value) {
+            if (step == 'doOperandOne' && type == 'number') {
+                if (window.mainDisplay.innerHTML.length >= 10) {
+                    return;
+                }
+                if (typeof window.operandOne !== 'undefined') {
+                    value = parseInt(window.mainDisplay.innerHTML + value);
+                }
+                window.operandOne = value;
+                window.mainDisplay.innerHTML = value;
+            }
+        }
+        function doOperator(type, value) {
+
+        }
+        function doOperandTwo(type, value) {
+
         }
     </script>
 </body>
