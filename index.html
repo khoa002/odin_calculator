@@ -207,12 +207,6 @@
 
         function doOperandOne(type, value) {
             if (step == 'doOperandOne' && type == 'number') {
-                if (window.mainDisplay.innerHTML.length >= 10) {
-                    return;
-                }
-                if (typeof window.operandOne !== 'undefined') {
-                    value = parseInt(window.mainDisplay.innerHTML + value);
-                }
                 window.operandOne = value;
                 window.mainDisplay.innerHTML = value;
             }
@@ -222,6 +216,19 @@
         }
         function doOperandTwo(type, value) {
 
+        }
+
+        function add(x, y) {
+            return x + y;
+        }
+        function subtract(x, y) {
+            return x - y;
+        }
+        function multiply(x, y) {
+            return x * y;
+        }
+        function divide(x, y) {
+            return x / y;
         }
     </script>
 </body>
